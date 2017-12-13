@@ -19,13 +19,14 @@ def show_index():
 
 
 if __name__ == "__main__":
-    app.debug = os.environ.get("DEBUG") or False
-
-    if app.debug:
-        DebugToolbarExtension(app)
-
+    app.jinja_env.auto_reload = True
+    app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     # connect_to_db(app)
+
+    app.debug = True
+    DebugToolbarExtension(app)
+
     PORT = int(os.environ.get("PORT", 5000))
 
     app.run(host="0.0.0.0", port=PORT)
