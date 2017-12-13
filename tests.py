@@ -11,9 +11,10 @@ class BasicTests(unittest.TestCase):
         self.client = app.test_client()
 
     def test_homepage(self):
+        """Any user should be able to see the homepage."""
 
         r = self.client.get("/")
-        self.assertIn("Let's track our runs!", r.data)
+        self.assertIn("Vacation Run", r.data)
 
 
 if __name__ == "__main__":
